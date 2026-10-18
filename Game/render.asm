@@ -1,7 +1,7 @@
 .data
 	
 	
-.include "tijolo.s"
+.include "../Res/tijolo.s"
 
 		
 				
