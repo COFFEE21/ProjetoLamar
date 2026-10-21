@@ -1,14 +1,21 @@
+
+
+
+
+
 .data
 	
 	
-.include "../Res/tijolo.s"
+#.include "../Res/tijolo.s"
+	
 
-		
-				
 
 
 .text
-
+	
+	
+	
+	
         #li t1,0xFF000000	# endereco inicial da Memoria VGA - Frame 0
 	#li t2,0xFF012C00	# endereco final 
 
@@ -27,14 +34,21 @@
 	addi s8, zero, 320
 
 SETUP: #decide onde vai desenhar cada bloco(Tile)
-
+	
+	
+	#la t4, TIJOLO		#endreço tijolo
+	
+	jal TMANAGER #Endereço da tile é retornado em t4 
+	
 	jal INLINHA #t1 armazena o resultado dessa função
 	li t2,0xFF012C00	# endereco final do VGA
 	jal FIMLINHA#t3 armazena o resultado dessa função
-	la t4, TIJOLO		#endreço tijolo
-	addi t5, t4, 8		#começo dos bits de informação do tijolo
+	addi t5, t4, 8		#começo dos bits de informação da tile
 	li t6 , 16 #linhas para desenhar no próximo bloco
 	j LOOP
+
+
+
 
 INLINHA:#Função calcula o endreço inicial de cada bloco segundo o número de coluna e linha
 	li t1 0xFF000000
@@ -120,3 +134,7 @@ UP2:
 END: #encerra o programa
 	li a7, 10
 	ecall
+	
+	
+		
+.include "TManager.asm"			
