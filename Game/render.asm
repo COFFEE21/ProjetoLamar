@@ -29,7 +29,7 @@
 #s4, registrador temporário 2       
         addi s0, zero, 0 #coluna
 	addi s1, zero, 0 #linha
-	addi s2, zero, 16
+	addi s2, zero, 16 
 	addi s7, zero, 240
 	addi s8, zero, 320
 
