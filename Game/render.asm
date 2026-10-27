@@ -14,7 +14,9 @@
 .text
 	
 	
-	
+DRAW0:
+la a0,RETDRAW
+sw gp,0(a0)
 	
         #li t1,0xFF000000	# endereco inicial da Memoria VGA - Frame 0
 	#li t2,0xFF012C00	# endereco final 
@@ -132,9 +134,14 @@ UP2:
 
 	
 END: #encerra o programa
-	li a7, 10
-	ecall
+
+	
+	la a0,RETDRAW
+	lw s0,0(a0)
+	jalr x0,0(s0)
+	
+	#li a7, 10
+	#ecall
 	
 	
-		
 .include "TManager.asm"			

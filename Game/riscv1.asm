@@ -1,7 +1,9 @@
+
 .text
 # ---------- pinta o mapa todo de escuro ----------
 li a0, 0x49494949
-jal FILL_SCREEN
+
+jal  gp,DRAW0
 
 # ---------- posição inicial do personagem ----------
 li s5, 156              # x
@@ -306,9 +308,18 @@ R_COL:
     addi t3, t3, -1
     bnez t3, R_ROW
     ret
+    
+.include "render.asm"
+
 
 # =====================================================
 .data
+
+RETDRAW:.word 1
+
+
+
+
 # cada glifo: 5 linhas de 3 bits + 3 bytes de padding
 # índices: 0=V 1=O 2=L 3=T 4=A 5=R 6=C 7=N 8=F 9=I 10=G
 GLYPHS:
